@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/simple-mandrill.rb'
+
+unless ARGV.length == 3
+  STDERR.puts "usage: test_email <api-key> <from-email> <to-email>"
+  exit 1
+end
+
+api_key = ARGV[0]
+from_email = ARGV[1]
+to_email = ARGV[2]
+
+mandrill = SimpleMandrill.new(api_key)
+
+message = {
+  from_email: from_email,
+  from_name: 'Testly Testing',
+  subject: "A test email",
+  html: "<p>Here's your test email.</p>",
+  text: "Here's your test email.",
+  to: [{ email: to_email }],
+  track_opens: true,
+  track_clicks: true
+}
+
+puts mandrill.messages_send(message)

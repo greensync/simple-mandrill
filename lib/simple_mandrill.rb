@@ -30,6 +30,10 @@ class SimpleMandrill
     call :messages, :send, message: message
   end
 
+  def messages_send_template(template_name, message)
+    call :messages, 'send-template', { template_name: template_name, template_content: [], message: message }
+  end
+
   private
 
   def call(group, action, body = {})

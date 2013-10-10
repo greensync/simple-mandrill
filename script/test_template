@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/simple-mandrill.rb'
+
+unless ARGV.length == 2
+  STDERR.puts "usage: test_template <api-key> <to-email>"
+  exit 1
+end
+
+api_key = ARGV[0]
+to_email = ARGV[1]
+
+mandrill = SimpleMandrill.new(api_key)
+
+message = {
+  to: [{ email: to_email }],
+  track_opens: true,
+  track_clicks: true,
+  global_merge_vars: [
+    {
+      name: "event",
+      content: "Test event #{Time.now.to_i}"
+    },
+    {
+      name: "start_time",
+      content: Time.now.to_s
+    },
+    {
+      name: "end_time",
+      content: (Time.now + 3600).to_s
+    }
+  ]
+}
+
+puts mandrill.messages_send_template('testing', message)

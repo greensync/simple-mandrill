@@ -32,4 +32,4 @@ message = {
   ]
 }
 
-puts mandrill.messages_send_template('testing', message)
+puts mandrill.messages_send_template('testing', message).inspect

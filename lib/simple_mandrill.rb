@@ -42,6 +42,10 @@ class SimpleMandrill
     call :templates, :update, updated_info
   end
 
+  def templates_add(updated_info)
+    call :templates, :add, updated_info
+  end
+
   private
 
   def call(group, action, body = {})

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email = 'info@greensync.com.au'
   s.homepage = 'http://github.com/greensync/simple-mandrill'
 
-  s.add_dependency 'json', '~> 1'
+  s.add_dependency 'json'
 
   s.add_development_dependency 'autotest-standalone'
   s.add_development_dependency 'rake'
